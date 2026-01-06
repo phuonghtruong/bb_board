@@ -1,4 +1,5 @@
 #include "i2c2_bme280.h"
+#include "debug.h"
 #include <fcntl.h>
 #include <linux/i2c-dev.h>
 #include <stdint.h>
@@ -20,6 +21,7 @@ static int bme280_read_regs(int fd, uint8_t reg, uint8_t *data, int len) {
 }
 
 int bme280_init(int *fd, const char *bus) {
+  DEBUG_PRINT("Initialize BME280...\n");
   // 1. Open I2C bus
   if ((*fd = open(bus, O_RDWR)) < 0)
     return BME280_OPEN_I2C_BUS_FAILED;
@@ -42,6 +44,7 @@ int bme280_init(int *fd, const char *bus) {
 }
 
 int bme280_read_temp(int fd, bme280_calib_t *calib, float *temp) {
+  DEBUG_PRINT("Reading temperature data...\n");
   uint8_t data[6];
 
   // Read Calibration Data if not already loaded (T1-T3)
@@ -70,10 +73,12 @@ int bme280_read_temp(int fd, bme280_calib_t *calib, float *temp) {
   calib->t_fine = (int32_t)(var1 + var2);
 
   *temp = (float)((var1 + var2) / 5120.0);
+  DEBUG_PRINT("%.2f\n", *temp);
   return 0;
 }
 
 int bme280_read_press(int fd, bme280_calib_t *calib, float *press) {
+  DEBUG_PRINT("Reading Pressure data...\n");
   uint8_t data[18];
 
   // Read Calibration Data if not already loaded (P1-P9)
@@ -117,7 +122,43 @@ int bme280_read_press(int fd, bme280_calib_t *calib, float *press) {
   p = p + (var1 + var2 + ((double)calib->dig_P7)) / 16.0;
 
   *press = (float)(p / 100.0);
+  DEBUG_PRINT("%.2f\n", *press);
   return 0;
 }
 
-int bme280_read_hum(int fd, bme280_calib_t *calib, float *hum) { return 0; }
+int bme280_read_hum(int fd, bme280_calib_t *calib, float *hum) {
+  DEBUG_PRINT("Reading Humidity data...\n");
+  uint8_t data[8];
+
+  if (calib->dig_H1 == 0) {
+    bme280_read_regs(fd, REG_CALIB_HUM_H1, &calib->dig_H1, 1);
+    bme280_read_regs(fd, REG_CALIB_HUM_H2, data, 7);
+    calib->dig_H2 = (data[1] << 8) | data[0];
+    calib->dig_H3 = data[2];
+    calib->dig_H4 = (data[3] << 4) | (data[4] & 0x0F);
+    calib->dig_H5 = (data[5] << 4) | data[4] >> 4;
+    calib->dig_H6 = data[6];
+  }
+
+  // Read Raw ADC Humidity
+  if (bme280_read_regs(fd, REG_HUM_MSB, data, 2) != 2)
+    return BME280_RD_RAW_ADC_HUM_FAILED;
+
+  int32_t adc_H = (data[0] << 8) | data[1];
+
+  double var_H;
+  var_H = ((double)calib->t_fine) - 76800.0;
+  var_H = (adc_H - (((double)calib->dig_H4) * 64.0 +
+                    ((double)calib->dig_H5) / 16384.0 * var_H)) *
+          (((double)calib->dig_H2) / 65536.0 *
+           (1.0 + ((double)calib->dig_H6) / 67108864.0 * var_H *
+                      (1.0 + ((double)calib->dig_H3) / 67108864.0 * var_H)));
+  var_H = var_H * (1.0 - ((double)calib->dig_H1) * var_H / 524288.0);
+  if (var_H > 100.0)
+    var_H = 100.0;
+  else if (var_H < 0.0)
+    var_H = 0.0;
+  *hum = var_H;
+  DEBUG_PRINT("%.2f\n", *hum);
+  return 0;
+}

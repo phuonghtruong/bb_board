@@ -1,4 +1,5 @@
 #include "i2c_lcd.h"
+#include "debug.h"
 #include <i2c/smbus.h>
 #include <stdint.h>
 #include <unistd.h>
@@ -17,6 +18,7 @@ void lcd_send_byte(int file, uint8_t addr, uint8_t val, uint8_t mode) {
 }
 
 void lcd_init(int file, uint8_t addr) {
+  DEBUG_PRINT("Initialize LCD 16x2...");
   usleep(50000);
   lcd_send_nibble(file, addr, 0x30, LCD_COMMAND);
   usleep(5000);

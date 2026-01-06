@@ -8,7 +8,8 @@
 // Registers memory map
 #define REG_CALIB_TEMP 0x88
 #define REG_CALIB_PRESS 0x8E
-#define REG_CALIB_HUM 0xA1
+#define REG_CALIB_HUM_H1 0xA1
+#define REG_CALIB_HUM_H2 0xE1
 #define REG_ID 0xD0    // Read only
 #define REG_RESET 0xE0 // Write only - Write 0xB6 only to Copyright
 #define REG_CTRL_HUM 0xF2
@@ -31,6 +32,7 @@ enum BME280_RC {
   BME280_RD_ID_FAILED,
   BME280_RD_RAW_ADC_TEMP_FAILED,
   BME280_RD_RAW_ADC_PRESS_FAILED,
+  BME280_RD_RAW_ADC_HUM_FAILED,
   BME280_RD_ADC_PRESS_FAILED,
   BME280_RD_ADC_HUM_FAILED,
   BME280_RD_REG_FAILED

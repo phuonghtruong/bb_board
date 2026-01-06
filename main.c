@@ -1,3 +1,4 @@
+#include "debug.h"
 #include "i2c2_bme280.h"
 #include "include/i2c_lcd.h"
 #include "include/rtc.h"
@@ -86,6 +87,7 @@ int main() {
 
   float temperature;
   float pressure;
+  float humid;
   bme280_calib_t calib = {0}; // initialize to zero
 
   if (bme280_init(&bme280_fd, bus_i2c1) != 0) {
@@ -93,26 +95,33 @@ int main() {
     return -1;
   }
 
-  printf("BME280 Initialized. Starting loop...\n");
+  DEBUG_PRINT("Starting loop...\n");
 
   while (1) {
     if (bme280_read_temp(bme280_fd, &calib, &temperature) == 0) {
       lcd_put_cursor(lcd_fd, I2C_ADDR, 0, 0);
-      snprintf(buffer, sizeof(buffer), "Temp: %.2f C  ", temperature);
+      snprintf(buffer, sizeof(buffer), "T:%.1f C ", temperature);
       lcd_send_string(lcd_fd, I2C_ADDR, buffer);
     } else {
       lcd_put_cursor(lcd_fd, I2C_ADDR, 0, 0);
-      snprintf(buffer, sizeof(buffer), "Temp: Error  ");
+      snprintf(buffer, sizeof(buffer), "T: Error  ");
       lcd_send_string(lcd_fd, I2C_ADDR, buffer);
     }
 
     if (bme280_read_press(bme280_fd, &calib, &pressure) == 0) {
       lcd_put_cursor(lcd_fd, I2C_ADDR, 1, 0);
-      snprintf(buffer, sizeof(buffer), "Press: %.1f hPa ", pressure);
+      snprintf(buffer, sizeof(buffer), "P:%.1f hPa ", pressure);
+      lcd_send_string(lcd_fd, I2C_ADDR, buffer);
+    } else {
+    }
+
+    if (bme280_read_hum(bme280_fd, &calib, &humid) == 0) {
+      lcd_put_cursor(lcd_fd, I2C_ADDR, 0, 9);
+      snprintf(buffer, sizeof(buffer), "H:%.1f%%", humid);
       lcd_send_string(lcd_fd, I2C_ADDR, buffer);
     }
 
-    usleep(300000);
+    usleep(5000000);
   }
   close(lcd_fd);
   close(bme280_fd);
