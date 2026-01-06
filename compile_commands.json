@@ -1,0 +1,47 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Wall",
+      "-o",
+      "bb_main",
+      "main.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/main.c",
+    "output": "/home/briantruong/github/bb_board/bb_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Wall",
+      "-o",
+      "bb_main",
+      "src/i2c_lcd.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/src/i2c_lcd.c",
+    "output": "/home/briantruong/github/bb_board/bb_main"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Wall",
+      "-o",
+      "bb_main",
+      "src/rtc.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/src/rtc.c",
+    "output": "/home/briantruong/github/bb_board/bb_main"
+  }
+]
