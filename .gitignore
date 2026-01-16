@@ -1,2 +1,5 @@
 bb_venv/
 .cache/
+.cache/
+bb_main
+.cache/*
