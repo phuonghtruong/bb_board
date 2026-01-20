@@ -28,7 +28,7 @@ ifeq ($(APP), camera)
 	ENTRY_POINT = main_sec_cam.c
 	TARGET = bb_camera_app
 	LDFLAGS += -L/usr/lib/arm-linux-gnueabihf
-	LIBS += -lv4l2 -lpthread
+	LIBS += -lv4l2 -lpthread -static-libgcc
 else
 	Entry_POINT = main.c
 	TARGET = bb_main
