@@ -14,7 +14,7 @@ if [ "$#" -ne 1 ]; then
   exit 1
 fi
 APP_FILE=$1
-BB_HOST="192.168.7.2"
+BB_HOST="beaglebone.local"
 BB_USER="debian"
 BB_PATH="/home/$BB_USER/"
 
