@@ -3,3 +3,5 @@ bb_venv/
 .cache/
 bb_main
 .cache/*
+test_runner
+venv

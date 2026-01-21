@@ -5,14 +5,16 @@
       "-c",
       "-I",
       "include",
+      "-Itests/unity",
       "-Wall",
+      "-O2",
       "-o",
-      "bb_main",
-      "main.c"
+      "test_runner",
+      "src/camera.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
-    "file": "/home/briantruong/github/bb_board/main.c",
-    "output": "/home/briantruong/github/bb_board/bb_main"
+    "file": "/home/briantruong/github/bb_board/src/camera.c",
+    "output": "/home/briantruong/github/bb_board/test_runner"
   },
   {
     "arguments": [
@@ -20,14 +22,33 @@
       "-c",
       "-I",
       "include",
+      "-Itests/unity",
       "-Wall",
+      "-O2",
       "-o",
-      "bb_main",
+      "test_runner",
+      "src/i2c2_bme280.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/src/i2c2_bme280.c",
+    "output": "/home/briantruong/github/bb_board/test_runner"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Itests/unity",
+      "-Wall",
+      "-O2",
+      "-o",
+      "test_runner",
       "src/i2c_lcd.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/i2c_lcd.c",
-    "output": "/home/briantruong/github/bb_board/bb_main"
+    "output": "/home/briantruong/github/bb_board/test_runner"
   },
   {
     "arguments": [
@@ -35,13 +56,49 @@
       "-c",
       "-I",
       "include",
+      "-Itests/unity",
       "-Wall",
+      "-O2",
       "-o",
-      "bb_main",
+      "test_runner",
       "src/rtc.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/rtc.c",
-    "output": "/home/briantruong/github/bb_board/bb_main"
+    "output": "/home/briantruong/github/bb_board/test_runner"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Itests/unity",
+      "-Wall",
+      "-O2",
+      "-o",
+      "test_runner",
+      "tests/test_camera.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/tests/test_camera.c",
+    "output": "/home/briantruong/github/bb_board/test_runner"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Itests/unity",
+      "-Wall",
+      "-O2",
+      "-o",
+      "test_runner",
+      "tests/unity/unity.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/tests/unity/unity.c",
+    "output": "/home/briantruong/github/bb_board/test_runner"
   }
 ]

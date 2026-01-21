@@ -31,5 +31,8 @@ int main() {
   fclose(out);
   camera_stop_streaming(&my_cam);
   camera_close(&my_cam);
+
+  // convert to mjpeg into mp4 format
+
   return 0;
 }

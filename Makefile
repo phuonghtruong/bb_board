@@ -1,11 +1,15 @@
 SRC_DIR = src
 INC_DIR = include
 
+# Added: path where Unity test scripts are located
+TEST_DIR = tests
+UNITY_DIR = $(TEST_DIR)/unity
+
 # define all possible output binaries
 ALL_TARGETS = bb_main bb_camera_app
 
 CC = arm-linux-gnueabihf-gcc
-CFLAGS = -I $(INC_DIR) -Wall
+CFLAGS = -I $(INC_DIR) -I$(UNITY_DIR) -Wall
 LDFLAGS =
 # Added: -lv4l2 for video4linux2 support
 LIBS = -li2c
@@ -38,9 +42,17 @@ endif
 #  source discovery
 SRCS = $(ENTRY_POINT) $(wildcard $(SRC_DIR)/*.c)
 
+TEST_SRCS = $(filter-out $(ENTRY_POINT), $(SRCS)) \
+						$(wildcard $(TEST_DIR)/*.c) $(wildcard $(UNITY_DIR)/*.c)
 
 all:
 	$(CC) $(CFLAGS) $(SRCS) -o $(TARGET) $(LDFLAGS) $(LIBS)
 
+test:
+	$(CC) $(CFLAGS) $(TEST_SRCS) -o test_runner $(LDFLAGS) $(LIBS)
+	@echo "Build successful. Run ./test_runner to execute tests."
+	@echo "----------------------------------------"
+	./test_runner
+
 clean:
-	rm -f $(ALL_TARGETS)
+	rm -f $(ALL_TARGETS) test_runner
