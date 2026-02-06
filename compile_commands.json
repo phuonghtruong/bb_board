@@ -9,12 +9,46 @@
       "-Wall",
       "-O2",
       "-o",
-      "test_runner",
+      "bb_camera_app",
+      "main_sec_cam.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/main_sec_cam.c",
+    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Itests/unity",
+      "-Wall",
+      "-O2",
+      "-o",
+      "bb_camera_app",
+      "src/bb_utils.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/src/bb_utils.c",
+    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Itests/unity",
+      "-Wall",
+      "-O2",
+      "-o",
+      "bb_camera_app",
       "src/camera.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/camera.c",
-    "output": "/home/briantruong/github/bb_board/test_runner"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app"
   },
   {
     "arguments": [
@@ -26,12 +60,46 @@
       "-Wall",
       "-O2",
       "-o",
-      "test_runner",
+      "bb_camera_app",
+      "src/core2530.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/src/core2530.c",
+    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Itests/unity",
+      "-Wall",
+      "-O2",
+      "-o",
+      "bb_camera_app",
+      "src/hcsr501.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/src/hcsr501.c",
+    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Itests/unity",
+      "-Wall",
+      "-O2",
+      "-o",
+      "bb_camera_app",
       "src/i2c2_bme280.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/i2c2_bme280.c",
-    "output": "/home/briantruong/github/bb_board/test_runner"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app"
   },
   {
     "arguments": [
@@ -43,12 +111,12 @@
       "-Wall",
       "-O2",
       "-o",
-      "test_runner",
+      "bb_camera_app",
       "src/i2c_lcd.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/i2c_lcd.c",
-    "output": "/home/briantruong/github/bb_board/test_runner"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app"
   },
   {
     "arguments": [
@@ -60,45 +128,11 @@
       "-Wall",
       "-O2",
       "-o",
-      "test_runner",
+      "bb_camera_app",
       "src/rtc.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/rtc.c",
-    "output": "/home/briantruong/github/bb_board/test_runner"
-  },
-  {
-    "arguments": [
-      "/usr/bin/arm-linux-gnueabihf-gcc",
-      "-c",
-      "-I",
-      "include",
-      "-Itests/unity",
-      "-Wall",
-      "-O2",
-      "-o",
-      "test_runner",
-      "tests/test_camera.c"
-    ],
-    "directory": "/home/briantruong/github/bb_board",
-    "file": "/home/briantruong/github/bb_board/tests/test_camera.c",
-    "output": "/home/briantruong/github/bb_board/test_runner"
-  },
-  {
-    "arguments": [
-      "/usr/bin/arm-linux-gnueabihf-gcc",
-      "-c",
-      "-I",
-      "include",
-      "-Itests/unity",
-      "-Wall",
-      "-O2",
-      "-o",
-      "test_runner",
-      "tests/unity/unity.c"
-    ],
-    "directory": "/home/briantruong/github/bb_board",
-    "file": "/home/briantruong/github/bb_board/tests/unity/unity.c",
-    "output": "/home/briantruong/github/bb_board/test_runner"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app"
   }
 ]

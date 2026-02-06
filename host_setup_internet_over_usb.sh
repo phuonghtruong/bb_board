@@ -41,7 +41,7 @@ sudo iptables -A FORWARD -i $BBB_IFACE -o $WAN_IFACE -j ACCEPT
 
 # 5. Assign IP to the Host side of the USB link
 # For Linux-to-Linux, the BBB usually expects the host to be 192.168.6.1
-sudo ip addr add 192.168.7.1/30 dev $BBB_IFACE 2>/dev/null
+sudo ip addr add 192.168.6.1/30 dev $BBB_IFACE 2>/dev/null
 sudo ip link set $BBB_IFACE up
 
 echo "---------------------"
