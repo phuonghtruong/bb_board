@@ -5,3 +5,14 @@ bb_main
 .cache/*
 test_runner
 venv
+
+# Ignore the secret webhook file
+.env*
+
+# Ignore video files and folder
+security_videos/
+*.mjpeg
+*.mp4
+
+# Ignore Unity lib files 
+tests/unity/
