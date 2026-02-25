@@ -15,15 +15,17 @@ To get started with this project, you will need a BeagleBone Black board and the
 ## Hardware Requirements
 - BeagleBone Black board
 - USB cable for power and programming
-- Breadboard and jumper wires
+- Breadboard, jumper wires, buttons
 - Bme280 sensor
 - USB Camera
+- LCD 2x16
+- Motion sensor
 - Power Supply (5V 2A recommended) in case connecting usb power is not sufficient
 ## Software Requirements
 - A Linux computer (Ubuntu recommended)
 - GCC compiler
 - Make utility
-- BeagleBone Black Debian image
+- BeagleBone Black Debian image 12
 - Python 3.x for Python applications
 - Required Python libraries (listed in requirements.txt)
 ## Installation
@@ -44,12 +46,12 @@ To get started with this project, you will need a BeagleBone Black board and the
 1. Connect the Bme280 sensor and USB camera to the BeagleBone Black as per the wiring diagram provided in the documentation.
 2. Load application binary into beaglebone black using:
     ```
-    sudo ./load_app.sh main
+    sudo ./load_app.sh <binary file> debian <ip address of beaglebone black>
     ```
 3. SSH to beaglebone black using
 4. Run the application:
 ```    sudo ./bb_camera_app
 ```
-   ./bb_camera_app
+    ./bb_camera_app
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
