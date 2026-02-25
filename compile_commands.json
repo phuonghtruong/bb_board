@@ -9,12 +9,12 @@
       "-Wall",
       "-O2",
       "-o",
-      "bb_camera_app",
+      "bb_camera_app.bin",
       "main_sec_cam.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/main_sec_cam.c",
-    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
   },
   {
     "arguments": [
@@ -26,12 +26,12 @@
       "-Wall",
       "-O2",
       "-o",
-      "bb_camera_app",
+      "bb_camera_app.bin",
       "src/bb_utils.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/bb_utils.c",
-    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
   },
   {
     "arguments": [
@@ -43,12 +43,29 @@
       "-Wall",
       "-O2",
       "-o",
-      "bb_camera_app",
+      "bb_camera_app.bin",
+      "src/button.c"
+    ],
+    "directory": "/home/briantruong/github/bb_board",
+    "file": "/home/briantruong/github/bb_board/src/button.c",
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
+  },
+  {
+    "arguments": [
+      "/usr/bin/arm-linux-gnueabihf-gcc",
+      "-c",
+      "-I",
+      "include",
+      "-Itests/unity",
+      "-Wall",
+      "-O2",
+      "-o",
+      "bb_camera_app.bin",
       "src/camera.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/camera.c",
-    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
   },
   {
     "arguments": [
@@ -60,12 +77,12 @@
       "-Wall",
       "-O2",
       "-o",
-      "bb_camera_app",
+      "bb_camera_app.bin",
       "src/core2530.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/core2530.c",
-    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
   },
   {
     "arguments": [
@@ -77,12 +94,12 @@
       "-Wall",
       "-O2",
       "-o",
-      "bb_camera_app",
+      "bb_camera_app.bin",
       "src/hcsr501.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/hcsr501.c",
-    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
   },
   {
     "arguments": [
@@ -94,12 +111,12 @@
       "-Wall",
       "-O2",
       "-o",
-      "bb_camera_app",
+      "bb_camera_app.bin",
       "src/i2c2_bme280.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/i2c2_bme280.c",
-    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
   },
   {
     "arguments": [
@@ -111,12 +128,12 @@
       "-Wall",
       "-O2",
       "-o",
-      "bb_camera_app",
+      "bb_camera_app.bin",
       "src/i2c_lcd.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/i2c_lcd.c",
-    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
   },
   {
     "arguments": [
@@ -128,11 +145,11 @@
       "-Wall",
       "-O2",
       "-o",
-      "bb_camera_app",
+      "bb_camera_app.bin",
       "src/rtc.c"
     ],
     "directory": "/home/briantruong/github/bb_board",
     "file": "/home/briantruong/github/bb_board/src/rtc.c",
-    "output": "/home/briantruong/github/bb_board/bb_camera_app"
+    "output": "/home/briantruong/github/bb_board/bb_camera_app.bin"
   }
 ]

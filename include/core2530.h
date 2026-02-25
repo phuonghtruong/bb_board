@@ -17,8 +17,17 @@
 #include <unistd.h>
 
 // Default UART4 for BeagleBone Black
-#define UART_PORT "/dev/ttyS4"
-#define UART_BAUDRATE B38400
+#define UART_PORT "/dev/ttyS1"
+#define UART_BAUDRATE B115200  // Standard baud rate (was 384000 which is non-standard)
+
+// Create a enum of AT commands
+typedef enum {
+  AT_CMD_AT,     // Basic AT command
+  AT_CMD_VER,    // Get version
+  AT_CMD_ATE0,   // Disable echo
+  AT_CMD_ATE1,   // Enable echo
+  AT_CMD_UNKNOWN // Unknown command
+} at_command_t;
 
 // Function declarations
 // Initializes the core2530 library

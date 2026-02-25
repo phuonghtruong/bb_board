@@ -16,3 +16,4 @@ security_videos/
 
 # Ignore Unity lib files 
 tests/unity/
+*.bin

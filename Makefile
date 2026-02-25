@@ -36,10 +36,15 @@ ifeq ($(APP), camera)
 else ifeq ($(APP), zigbee)
 	ENTRY_POINT = main_core2530b.c
 	TARGET = bb_zigbee_app.bin
+	LIBS += -lgpiod
 else ifeq ($(APP), motion)
 	ENTRY_POINT = main_hcsr501.c
 	TARGET = bb_motion_hcsr501.bin
 	LIBS += -li2c -lgpiod
+else ifeq ($(APP), mux_tool)
+	ENTRY_POINT = mux_tool.c
+	TARGET = bb_mux_tool.bin
+	LIBS += -lgpiod
 else
 	ENTRY_POINT = main.c
 	TARGET = bb_main.bin
@@ -61,5 +66,11 @@ test:
 	@echo "----------------------------------------"
 	./test_runner.bin
 
+test_all:
+	$(CC) $(CFLAGS) tests/test_runner_all.c tests/test_bb_utils.c tests/test_button.c tests/test_core2530.c tests/test_hcsr501.c tests/test_camera_unit.c tests/test_i2c_lcd.c tests/test_i2c2_bme280.c tests/test_rtc.c $(wildcard $(SRC_DIR)/*.c) $(wildcard $(UNITY_DIR)/*.c) -o test_all.bin $(LDFLAGS) $(LIBS) -lgpiod
+	@echo "All tests built. Running..."
+	@echo "=========================================="
+	./test_all.bin
+
 clean:
-	rm -f $(ALL_TARGETS) test_runner.bin
+	rm -f $(ALL_TARGETS) test_runner.bin test_all.bin
