@@ -12,9 +12,16 @@ else
   exit 1
 fi
 
+# --- Argument Check ---
+if [ "$#" -ne 1 ]; then
+  echo "Usage: $0 <bbb_ip>"
+  echo "Example: $0 192.168.6.2"
+  exit 1
+fi
+
 # --- Configuration ---
 BBB_USER="debian"
-BBB_IP="192.168.6.2"
+BBB_IP=$1                     # Received from script argument
 REMOTE_DIR="/home/debian"     # Where BBB saves videos
 LOCAL_DIR="./security_videos" # Where laptop saves them
 FFMPEG_LOGLEVEL="error"       # 'error' or 'info'
@@ -26,8 +33,9 @@ echo "-------------------------------------------------------"
 echo "Connecting to BeagleBone at $BBB_IP..."
 
 # 2. Download MJPEG files and remove from BBB to save space
+# We use -e to ensure SSH is used, and quotes for paths
 rsync -avz --remove-source-files \
-  ${BBB_USER}@${BBB_IP}:${REMOTE_DIR}/*.mjpeg "$LOCAL_DIR/"
+  "${BBB_USER}@${BBB_IP}:${REMOTE_DIR}/*.mjpeg" "$LOCAL_DIR/"
 
 # 3. Check if any files were downloaded
 cd "$LOCAL_DIR" || exit
@@ -35,7 +43,7 @@ shopt -s nullglob
 files=(*.mjpeg)
 
 if [ ${#files[@]} -eq 0 ]; then
-  echo "No new mjpeg files found on BeagleBone."
+  echo "No new mjpeg files found on BeagleBone at $BBB_IP."
   exit 0
 fi
 
@@ -49,9 +57,7 @@ for f in "${files[@]}"; do
   echo "Processing: $f -> $output_mp4"
 
   # --- FFmpeg Conversion ---
-  # -vf scale=-1:720 -> This scales the 2K video down to 720p so it
-  #                     uploads faster and stays under Discord's file limit.
-  #                     Remove this if you want full 2K quality.
+  # Scales down to 720p to stay under Discord's 25MB limit (usually)
   ffmpeg -y -loglevel "$FFMPEG_LOGLEVEL" -i "$f" \
     -vf "scale=-1:720" \
     -c:v libx264 -crf 25 -pix_fmt yuv420p "$output_mp4"
@@ -63,7 +69,7 @@ for f in "${files[@]}"; do
     # --- Discord Upload ---
     # We send a text message + the file
     curl -H "Content-Type: multipart/form-data" \
-      -F "content=🚨 **Motion Detected!** File: \`$output_mp4\`" \
+      -F "content=🚨 **Motion Detected!** BeagleBone: \`$BBB_IP\` File: \`$output_mp4\`" \
       -F "file=@$output_mp4" \
       "$DISCORD_WEBHOOK_KIEM_TRA_AN_TROM"
 
@@ -80,4 +86,4 @@ for f in "${files[@]}"; do
 done
 
 echo "-------------------------------------------------------"
-echo "All tasks complete."
+echo "All tasks complete for $BBB_IP."
